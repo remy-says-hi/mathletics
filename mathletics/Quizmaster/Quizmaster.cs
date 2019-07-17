@@ -1,14 +1,14 @@
 using System.Collections.Generic;
 using mathletics.Context;
+using System.Collections;
 using System;
+using System.Linq;
 
 namespace mathletics
 {
-    public class Quizmaster
-    {
-        Random random = new System.Random();
-
-        public List<Question> CreateQuiz()
+    public static class Quizmaster
+    {        
+        public static List<Question> CreateQuiz()
         {
             List<Question> questions = new List<Question>();                        
             
@@ -16,10 +16,9 @@ namespace mathletics
             return questions;
         }
 
-
-
-        public Question QuizAddition()
+        public static Question QuizAddition()
         {
+            Random random = new System.Random();
             Question question = new Question();
             int min = 1, max = 100;            
             int value1 = random.Next(min, max);
@@ -56,7 +55,11 @@ namespace mathletics
             return question;
         }
 
-
+        public static List<Question> BuildQuiz()
+        {
+            IEnumerable<Question> quiz = Enumerable.Range(1, 10).Select(x => QuizAddition());
+            return quiz.ToList();
+        }
 
     }
 }

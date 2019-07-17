@@ -1,5 +1,5 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using mathletics;
+using System.Collections.Generic;
 using mathletics.Context;
 
 namespace mathletics.Tests
@@ -8,12 +8,11 @@ namespace mathletics.Tests
     public class UnitTest1
     {
         [TestMethod]
-        public void TestMethod1()
+        public void Test_QuizAdditionTestAnswer_Question()
         {
-            //arrange
-            mathletics.Quizmaster qm = new mathletics.Quizmaster();            
+            //arrange           
             //act
-            Question testQuestion = qm.QuizAddition();            
+            Question testQuestion = Quizmaster.QuizAddition();            
             string[] numbers = testQuestion.Prompt.Split(' ');
             int value1 = int.Parse(numbers[0]);
             int value2 = int.Parse(numbers[2]);
@@ -37,5 +36,17 @@ namespace mathletics.Tests
                     break;
             }
         }
+
+        [TestMethod]
+        public void TestMethod2()
+        {
+            //arrange
+            //act
+            List<Question> testQuiz = Quizmaster.BuildQuiz();
+            //assert
+            System.Console.WriteLine(testQuiz);
+            Assert.AreEqual(8, testQuiz.Count);
+        }
+
     }
 }
