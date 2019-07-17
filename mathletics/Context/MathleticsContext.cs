@@ -7,8 +7,7 @@ namespace mathletics.Context
 
     public class MathleticsContext : DbContext
     {
-        public DbSet<Player> Player { get; set; }
-        public DbSet<ProblemList> ProblemList { get; set; }
+        public DbSet<Player> Player { get; set; }        
         public DbSet<Question> Question { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -31,13 +30,6 @@ namespace mathletics.Context
     {
         public int Id { get; set; }
         public int Choice { get; set; }
-    }
-
-
-    public class ProblemList 
-    {
-        public int Id { get; set; }
-        public List<Question> Questions { get; set; } = new List<Question>();
     }
 
     public class Question

@@ -13,17 +13,14 @@ namespace mathletics.Controllers
 
         [HttpGet("[action]")]
         public List<Question> GetAll(int startDateIndex)
-        {            
-            List<Question> questions = new List<Question>();
-            questions.Add(Quizmaster.QuizAddition());
-            questions.Add(Quizmaster.QuizAddition());
-            questions.Add(Quizmaster.QuizAddition());
-
-            foreach(Question question in questions)
+        {   
+            System.Console.WriteLine(Request.HttpContext.Connection.RemoteIpAddress);            
+            List<Question> quiz = MathleticsData.GetQuiz();
+            foreach(Question question in quiz)
             {
                 question.CorrectAnswer = 0;
             }
-            return questions;
+            return quiz;
         }
 
     }

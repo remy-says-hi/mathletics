@@ -38,7 +38,7 @@ namespace mathletics.Tests
         }
 
         [TestMethod]
-        public void TestMethod2()
+        public void Test_BuildQuiz_Question()
         {
             //arrange
             //act
@@ -47,6 +47,17 @@ namespace mathletics.Tests
             System.Console.WriteLine(testQuiz);
             Assert.AreEqual(8, testQuiz.Count);
         }
+
+        // [TestMethod]
+        // public void CreateQuiz_SaveToDataBase_Question()
+        // {
+        //     //arrange
+        //     //act
+        //     List<Question> testQuiz = Quizmaster.BuildQuiz();
+        //     MathleticsData.CreateQuiz(testQuiz);
+        //     //assert
+        //     Assert.AreEqual(8, testQuiz.Count);
+        // }
 
     }
 }

@@ -37,7 +37,7 @@ namespace mathletics
             question.Option2 = two.ToString();
             question.Option3 = three.ToString();
             
-            switch (random.Next(1, 3))
+            switch (random.Next(1, 4))
             {
                 case 1:
                     question.CorrectAnswer = 1;

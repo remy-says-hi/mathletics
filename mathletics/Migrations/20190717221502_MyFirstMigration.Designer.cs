@@ -9,7 +9,7 @@ using mathletics.Context;
 namespace mathletics.Migrations
 {
     [DbContext(typeof(MathleticsContext))]
-    [Migration("20190717161432_MyFirstMigration")]
+    [Migration("20190717221502_MyFirstMigration")]
     partial class MyFirstMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -50,16 +50,6 @@ namespace mathletics.Migrations
                     b.ToTable("Player");
                 });
 
-            modelBuilder.Entity("mathletics.Context.ProblemList", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.HasKey("Id");
-
-                    b.ToTable("ProblemList");
-                });
-
             modelBuilder.Entity("mathletics.Context.Question", b =>
                 {
                     b.Property<int>("Id")
@@ -73,13 +63,9 @@ namespace mathletics.Migrations
 
                     b.Property<string>("Option3");
 
-                    b.Property<int?>("ProblemListId");
-
                     b.Property<string>("Prompt");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("ProblemListId");
 
                     b.ToTable("Question");
                 });
@@ -89,13 +75,6 @@ namespace mathletics.Migrations
                     b.HasOne("mathletics.Context.Player")
                         .WithMany("Answer")
                         .HasForeignKey("PlayerId");
-                });
-
-            modelBuilder.Entity("mathletics.Context.Question", b =>
-                {
-                    b.HasOne("mathletics.Context.ProblemList")
-                        .WithMany("Questions")
-                        .HasForeignKey("ProblemListId");
                 });
 #pragma warning restore 612, 618
         }

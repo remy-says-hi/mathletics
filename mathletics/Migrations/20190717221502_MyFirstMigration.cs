@@ -22,15 +22,20 @@ namespace mathletics.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "ProblemList",
+                name: "Question",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("MySQL:AutoIncrement", true)
+                        .Annotation("MySQL:AutoIncrement", true),
+                    Prompt = table.Column<string>(nullable: true),
+                    Option1 = table.Column<string>(nullable: true),
+                    Option2 = table.Column<string>(nullable: true),
+                    Option3 = table.Column<string>(nullable: true),
+                    CorrectAnswer = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ProblemList", x => x.Id);
+                    table.PrimaryKey("PK_Question", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -53,39 +58,10 @@ namespace mathletics.Migrations
                         onDelete: ReferentialAction.Restrict);
                 });
 
-            migrationBuilder.CreateTable(
-                name: "Question",
-                columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("MySQL:AutoIncrement", true),
-                    Prompt = table.Column<string>(nullable: true),
-                    Option1 = table.Column<string>(nullable: true),
-                    Option2 = table.Column<string>(nullable: true),
-                    Option3 = table.Column<string>(nullable: true),
-                    CorrectAnswer = table.Column<int>(nullable: false),
-                    ProblemListId = table.Column<int>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Question", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Question_ProblemList_ProblemListId",
-                        column: x => x.ProblemListId,
-                        principalTable: "ProblemList",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
             migrationBuilder.CreateIndex(
                 name: "IX_Answer_PlayerId",
                 table: "Answer",
                 column: "PlayerId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Question_ProblemListId",
-                table: "Question",
-                column: "ProblemListId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -98,9 +74,6 @@ namespace mathletics.Migrations
 
             migrationBuilder.DropTable(
                 name: "Player");
-
-            migrationBuilder.DropTable(
-                name: "ProblemList");
         }
     }
 }
